@@ -9,7 +9,6 @@ use mongodb::bson::oid::ObjectId;
 use mongodb::options::{FindOneOptions, FindOptions};
 use serde_json::Value;
 use crate::error::Error;
-use crate::model::{MessageRoleType, ZPJob};
 
 use crate::store::api_client::ApiClients;
 use crate::store::cache::Caches;

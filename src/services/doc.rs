@@ -8,7 +8,7 @@ use mongodb::bson::oid::ObjectId;
 use redis::ToRedisArgs;
 use serde_json::Value;
 use crate::error::{Code, Error};
-use crate::model::{Context, ZpData, ZPJob};
+use crate::model::{Context};
 use crate::providers::Providers;
 
 #[derive(Clone)]

@@ -6,7 +6,7 @@ use rocket::State;
 use rocket_okapi::openapi;
 use serde_json::Value;
 use crate::error::{Code, Error};
-use crate::model::{Context, ZpData, ZPJob};
+use crate::model::{Context};
 
 use crate::services::Services;
 use crate::error::Error::ParamsError;
