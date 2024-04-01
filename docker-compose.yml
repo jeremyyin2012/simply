@@ -1,0 +1,74 @@
+version: "3"
+
+services:
+  mongodb:
+    image: mongo:7.0.6
+    restart: always
+    volumes:
+      - "./data/mongo/configdb:/data/configdb"
+      - "./data/mongo/db:/data/db"
+    environment:
+      TZ: "Asia/Shanghai"
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+    ports:
+      - 27017:27017
+    tty: true
+    stdin_open: true
+    networks:
+      - simply
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "2m"
+        max-file: "10"
+
+  mongo-express:
+    image: mongo-express:1.0.2
+    restart: always
+    ports:
+      - 8082:8081
+    environment:
+      TZ: "Asia/Shanghai"
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_USERNAME}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_PASSWORD}
+      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@mongodb:27017/
+    tty: true
+    stdin_open: true
+    networks:
+      - simply
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "2m"
+        max-file: "10"
+
+  simply:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    restart: always
+    environment:
+      TZ: "Asia/Shanghai"
+      VIRTUAL_HOST: ${VIRTUAL_HOST}
+      VIRTUAL_PORT: ${VIRTUAL_PORT}
+      LETSENCRYPT_HOST: ${LETSENCRYPT_HOST}
+      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
+    expose:
+      - 8002
+    tty: true
+    stdin_open: true
+    networks:
+      - simply
+      - nginx-proxy
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "2m"
+        max-file: "10"
+
+networks:
+  simply:
+  nginx-proxy:
+    external:
+      name: nginx-proxy_default
