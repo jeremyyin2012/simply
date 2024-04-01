@@ -5,11 +5,17 @@ Just quickly start a very simple API service, which can save any request data to
 
 # Quick Start
 
-## Just Download Binary
+## Use Docker
+
+```shell
+docker compose up -d
+```
+
+## 2. Just Download Binary
 
 ...
 
-## From Source
+## 3. Work From Source
 
 Install Rust
 
