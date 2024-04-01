@@ -22,7 +22,7 @@ rocket = { version = "0.5.0", features = ["json", "uuid"] }
 okapi = "0.7.0"
 rocket_okapi = { version = "0.8.0", features = ["uuid", "rocket_db_pools", "rocket_ws", "swagger", "rapidoc"] }
 redis = { version = "0.24.0", features = ["aio", "tokio-comp", "connection-manager"] }
-reqwest = { version = "0.11.23", features = ["json"] }
+reqwest = { version = "0.11.23", features = ["json", "rustls"] }
 url = { version = "2.5.0", features = ["serde"] }
 sea-query = { version = "0.30.7", features = ["derive", "attr", "thread-safe", "backend-mysql", "with-chrono", "with-time", "with-json", "with-rust_decimal", "with-bigdecimal", "with-uuid"] }
 uuid7 = { version = "0.7.2", features = ["serde", "uuid"] }

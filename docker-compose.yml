@@ -47,6 +47,8 @@ services:
     build:
       dockerfile: Dockerfile
       context: .
+    env_file:
+      - .env
     restart: always
     environment:
       TZ: "Asia/Shanghai"
@@ -54,8 +56,8 @@ services:
       VIRTUAL_PORT: ${VIRTUAL_PORT}
       LETSENCRYPT_HOST: ${LETSENCRYPT_HOST}
       LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
-    expose:
-      - 8002
+    ports:
+      - 8000:8000
     tty: true
     stdin_open: true
     networks:
@@ -70,5 +72,3 @@ services:
 networks:
   simply:
   nginx-proxy:
-    external:
-      name: nginx-proxy_default
